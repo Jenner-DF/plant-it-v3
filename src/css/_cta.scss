@@ -1,0 +1,116 @@
+.section__cta {
+  padding: 4.8rem 3.2rem 12.8rem 3.2rem;
+}
+
+.cta {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  // background-color: #e67e22;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+  border-radius: 11px;
+  background-image: $gradient;
+  overflow: hidden;
+
+  &__text_box {
+    padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+    color: inherit;
+  }
+  &__heading_secondary {
+    color: inherit;
+    margin-bottom: 3.2rem;
+  }
+  &__text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 4.8rem;
+  }
+  &__form {
+    display: grid;
+    grid-template-areas:
+      "cname cname cname sci sci sci"
+      "desc desc desc desc desc desc"
+      "cycle cycle water water sun sun"
+      "wguide wguide wguide wguide wguide wguide"
+      "sguide sguide sguide sguide sguide sguide"
+      "pguide pguide pguide pguide pguide pguide"
+      ". . submit submit . .";
+    // grid-template-areas: none;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 1.2rem;
+    row-gap: 2.4rem;
+
+    label {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    input,
+    select {
+      width: 100%;
+      padding: 1.2rem 0;
+      font-size: 1.8rem;
+      border-radius: 11px;
+      font-family: inherit;
+      color: inherit;
+      border: 9px;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+  &__img_box {
+    background-image: url("../img/potted-plant.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  textarea {
+    font-family: inherit;
+    font-size: 1.6rem;
+    width: 100%;
+    resize: none;
+    overflow: auto;
+  }
+}
+
+.form {
+  &_name {
+    grid-area: cname;
+  }
+  &_scientific {
+    grid-area: sci;
+  }
+  &_desc {
+    grid-area: desc;
+  }
+  &_cycle {
+    grid-area: cycle;
+  }
+  &_watering {
+    grid-area: water;
+  }
+  &_sunlight {
+    grid-area: sun;
+  }
+  &_guide_water {
+    grid-area: wguide;
+  }
+  &_guide_sun {
+    grid-area: sguide;
+  }
+  &_guide_prune {
+    grid-area: pguide;
+  }
+  &_submit {
+    grid-area: submit;
+  }
+}
+// grid-template-areas:
+//         "cname"
+//         "sci"
+//         "desc"
+//         "cycle"
+//         "water"
+//         "sun"
+//         "wguide"
+//         "sguide"
+//         "pguide"
+//         "submit";

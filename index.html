@@ -3,9 +3,736 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto+Slab:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./node_modules/feather-icons/dist/feather.js"></script>
+    <link rel="stylesheet" href="./src/css/main.scss" />
+    <!-- <script type="module" src="./src/js/script.js" defer></script> -->
     <title>Document</title>
   </head>
   <body>
-    <h1>hello world!</h1>
+    <!-- <input type="file" class="fileinput" /> -->
+
+    <header class="header">
+      <img class="header__logo" src="./src/img/logo.png" alt="Plant-it Logo" />
+      <form class="search">
+        <input
+          type="text"
+          class="search__field"
+          placeholder="Search plants..."
+        />
+        <button class="btn search__btn">
+          <i data-feather="search"> </i>
+
+          <span>Search</span>
+        </button>
+      </form>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <button class="nav__btn nav__btn--camera">
+              <i data-feather="upload"> </i>
+              <label for="fileInput">Upload</label>
+              <input
+                class="fileinput"
+                name="fileInput"
+                id="fileInput"
+                type="file"
+              />
+            </button>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+              <button class="nav__btn nav__btn--care">
+                <i data-feather="calendar"> </i>
+                <span>Care</span>
+              </button>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+              <button class="nav__btn nav__btn--bookmarks">
+                <i data-feather="bookmark"> </i>
+                <span>Bookmarks</span>
+              </button>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="nav__mobile">
+        <i class="nav__mobile_icon" name="menu" data-feather="menu"> </i>
+        <i class="nav__mobile_icon" name="x" data-feather="x"> </i>
+      </button>
+    </header>
+    <main class="main">
+      <ul class="section__preview">
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <!-- SECTION PLANT -->
+      <!-- <div class="section__plant container">
+        <figure class="plant__fig">
+          <img
+            src="./src/img/Young_lemon_basil_plant_(Ocimum_×_africanum).jpg"
+            alt="some plant"
+            class="plant__img"
+          />
+        </figure>
+
+        <div class="plant__details">
+          <div class="plant__details_bookmarks">
+            <button class="btn__plant btn__plant_bookmark">
+              <i data-feather="bookmark"></i>
+            </button>
+            <a href="#" class="btn__plant btn__plant_guide">
+              <i data-feather="book-open"></i>
+            </a>
+          </div>
+          <div class="plant__details_name">
+            <p class="plant__details_name_common">Weeping Labasurnum</p>
+            <p class="plant__details_name_scientific">
+              Laburnum x watereri 'Pendulum'
+            </p>
+          </div>
+          <div class="plant__details_desc">
+            Fern-leaf Yarrow (Achillea filipendulina 'Parker's Variety') is an
+            amazing, drought-tolerant deciduous perennial featuring
+            fine-textured, fern-like, bright green foliage and prominent
+            clusters of bright yellow flowers that appear all summer long. This
+            long-flowering, heat-loving plant forms an upright clump topped with
+            feathery, fragrant foliage and adds a splash of delightful color to
+            your garden or landscape. It's an easy-to-grow, low-maintenance
+            plant that requires very little care and looks great in mixed
+            borders, rock gardens, and containers. Fern-leaf Yarrow's striking
+            foliage provides an elegant backdrop for any garden area, attracts
+            beneficial insects, and provides nutritious food for wild birds.
+            It's an excellent choice for Sunset Climate Zones 1–24. Experience
+            the captivating beauty this lovely flower with its notable feathery,
+            fern leaves has to offer!
+          </div>
+          <div class="plant__details_cycle">
+            <i data-feather="refresh-cw"></i>
+            <h4>Herbaceous Perennial</h4>
+          </div>
+          <div class="plant__details_watering">
+            <i data-feather="droplet"></i>
+            <h4>Average</h4>
+          </div>
+          <div class="plant__details_sunlight">
+            <i data-feather="sun"></i>
+            <h4>Part shade/part sun</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="section__care container">
+        <div class="care__title"><p>CARE GUIDE</p></div>
+        <div class="care__watering">
+          <i class="care__logo" data-feather="droplet"></i>
+
+          <div class="care__desc">
+            Weeping Laburnum (Laburnum x watereri 'Pendulum') should be watered
+            on average once per week, but variations may be necessary depending
+            on soil conditions, the type of pot the plant is in, and ambient
+            temperature. It is best to water at the base of the plant, allowing
+            time for the water to fully saturate the root zone before the next
+            watering. During warmer months, it may require more frequent
+            waterings. During cooler months, waterings should be reduced. As a
+            general rule, it's best to water when the top inch or 2 of soil
+            feels dry.
+          </div>
+        </div>
+        <div class="care__sunlight">
+          <i class="care__logo" data-feather="sun"></i>
+
+          <div class="care__desc">
+            Weeping Laburnum (Laburnum x watereri 'Pendulum') should be planted
+            in a spot that full sunlight most of the day. Ideally, the plant
+            should receive around 6-8 hours of direct sunlight each day in
+            spring, summer, and fall. However, during the hottest part of the
+            day in summer, partial shade is preferred to protect the plant from
+            the intense heat. During the winter months, Weeping Laburnum should
+            receive some indirect sunlight as a winter or morning sun can still
+            provide the plant with an important energy boost.
+          </div>
+        </div>
+        <div class="care__pruning">
+          <i class="care__logo" data-feather="scissors"></i>
+          <div class="care__desc">
+            Weeping Laburnum (Laburnum x watereri 'Pendulum') should be pruned
+            in the late spring or early summer, after flowering but before the
+            end of July. Heavy pruning should not be done on this plant species,
+            as this will remove the flowers for the following season. Instead,
+            light pruning should be done to remove any dead, diseased or damaged
+            branches, and to trim any branches that are growing too long or
+            unsightly. If any branches are interfering with walkways or
+            buildings, those can also be pruned. This species can also be pruned
+            to keep its shape and size, or to thicken up the branches, but care
+            should be taken not to remove too many branches.
+          </div>
+        </div>
+      </div>
+      <div class="section__cta container">
+        <div class="cta">
+          <div class="cta__text_box">
+            <h3 class="cta__heading_secondary">Add your plant!</h3>
+            <p class="cta__text">
+              Join our growing community of plant enthusiasts and showcase your
+              green companion. Adding your plant is easy - just fill out the
+              form below with some details about your plant, and let it flourish
+              in our digital garden!
+            </p>
+
+            <form class="cta__form" name="sign-up">
+              <div class="form_name">
+                <label for="plant-name">Plant Name</label>
+                <input
+                  id="plant-name"
+                  type="text"
+                  placeholder="Fern-leaf Yarrow"
+                  name="plant-name"
+                  required
+                />
+              </div>
+
+              <div class="form_scientific">
+                <label for="sci-name">Scientific Name</label>
+                <input
+                  id="sci-name"
+                  type="text"
+                  placeholder="Achillea filipendulina"
+                  name="sci-name"
+                  required
+                />
+              </div>
+              <div class="form_desc">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="desc" rows="3" required></textarea>
+              </div>
+              <div class="form_cycle">
+                <label for="select-where">Cycle</label>
+                <select id="select-where" name="select-where" required="">
+                  <option value="">Choose one option:</option>
+                  <option value="annual">Annual</option>
+                  <option value="biannual">Biannual</option>
+                  <option value="biennual">Biennual</option>
+                  <option value="perennial">Perennial</option>
+                </select>
+              </div>
+              <div class="form_watering">
+                <label for="select-where">Watering</label>
+                <select id="select-where" name="select-where" required>
+                  <option value="">Choose one option:</option>
+                  <option value="none">None</option>
+                  <option value="minimum">Mnimum</option>
+                  <option value="average">Average</option>
+                  <option value="frequent">Frequent</option>
+                </select>
+              </div>
+              <div class="form_sunlight">
+                <label for="select-where">Sunlight</label>
+                <select id="select-where" name="select-where" required>
+                  <option value="">Choose one option:</option>
+                  <option value="part-shade">Part shade</option>
+                  <option value="full-shade">Full shade</option>
+                  <option value="sun-part-shade">Sun-part shade</option>
+                  <option value="full-sun">Full sun</option>
+                </select>
+              </div>
+              <div class="form_guide form_guide_water">
+                <label for="watering-guide">Watering Guide</label>
+                <textarea
+                  name="watering-guide"
+                  id="watering-guide"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <div class="form_guide form_guide_sun">
+                <label for="sunlight-guide">Sunlight Guide</label>
+                <textarea
+                  name="sunlight-guide"
+                  id="sunlight-guide"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <div class="form_guide form_guide_prune">
+                <label for="pruning-guide">Pruning Guide</label>
+                <textarea
+                  name="pruning-guide"
+                  id="pruning-guide"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <button class="btn btn--form form_submit">Add plant</button>
+            </form>
+          </div>
+          <div
+            class="cta__img_box"
+            role="img"
+            aria-label="Woman enjoying food"
+          ></div>
+        </div>
+      </div> -->
+    </main>
   </body>
 </html>
+<!-- SECTION PREVIEW -->
+<!-- <ul class="section__preview">
+        <li class="preview">
+          <a class="preview__link" href="#">
+            <figure class="preview__fig">
+              <img src="./src/img/plant1.jpg" alt="Test" />
+            </figure>
+            <div class="preview__data">
+              <h4 class="preview__title">Weeasdasdping Laburnum</h4>
+              <p class="preview__sci">Laburnum x watereri 'Pendulum'</p>
+            </div>
+          </a>
+        </li>
+      </ul> -->
+<!-- SECTION PLANT
+<div class="container grid">
+  <div class="plant">
+    <figure class="plant__fig">
+      <img
+        src="./src/img/Young_lemon_basil_plant_(Ocimum_×_africanum).jpg"
+        alt="some plant"
+        class="plant__img"
+      />
+    </figure>
+
+    <div class="plant__details">
+      <div class="plant__details_bookmarks">
+        <button class="btn__plant btn__plant_bookmark">
+          <i data-feather="bookmark"></i>
+        </button>
+        <a href="#" class="btn__plant btn__plant_guide">
+          <i data-feather="book-open"></i>
+        </a>
+      </div>
+      <div class="plant__details_name">
+        <p class="plant__details_name_common">Weeping Labasurnum</p>
+        <p class="plant__details_name_scientific">
+          Laburnum x watereri 'Pendulum'
+        </p>
+      </div>
+      <div class="plant__details_desc">
+        Fern-leaf Yarrow (Achillea filipendulina 'Parker's Variety') is an
+        amazing, drought-tolerant deciduous perennial featuring
+        fine-textured, fern-like, bright green foliage and prominent
+        clusters of bright yellow flowers that appear all summer long.
+        This long-flowering, heat-loving plant forms an upright clump
+        topped with feathery, fragrant foliage and adds a splash of
+        delightful color to your garden or landscape. It's an
+        easy-to-grow, low-maintenance plant that requires very little care
+        and looks great in mixed borders, rock gardens, and containers.
+        Fern-leaf Yarrow's striking foliage provides an elegant backdrop
+        for any garden area, attracts beneficial insects, and provides
+        nutritious food for wild birds. It's an excellent choice for
+        Sunset Climate Zones 1–24. Experience the captivating beauty this
+        lovely flower with its notable feathery, fern leaves has to offer!
+      </div>
+      <div class="plant__details_cycle">
+        <i data-feather="refresh-cw"></i>
+        <h4>Herbaceous Perennial</h4>
+      </div>
+      <div class="plant__details_watering">
+        <i data-feather="droplet"></i>
+        <h4>Average</h4>
+      </div>
+      <div class="plant__details_sunlight">
+        <i data-feather="sun"></i>
+        <h4>Part shade/part sun</h4>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- SECTION CARE GUIDE -->
+<!-- <div class="section__care container">
+  <div class="care__title"><p>CARE GUIDE</p></div>
+  <div class="care__watering">
+    <i class="care__logo" data-feather="droplet"></i>
+
+    <div class="care__desc">
+      Weeping Laburnum (Laburnum x watereri 'Pendulum') should be watered
+      on average once per week, but variations may be necessary depending
+      on soil conditions, the type of pot the plant is in, and ambient
+      temperature. It is best to water at the base of the plant, allowing
+      time for the water to fully saturate the root zone before the next
+      watering. During warmer months, it may require more frequent
+      waterings. During cooler months, waterings should be reduced. As a
+      general rule, it's best to water when the top inch or 2 of soil
+      feels dry.
+    </div>
+  </div>
+  <div class="care__sunlight">
+    <i class="care__logo" data-feather="sun"></i>
+
+    <div class="care__desc">
+      Weeping Laburnum (Laburnum x watereri 'Pendulum') should be planted
+      in a spot that full sunlight most of the day. Ideally, the plant
+      should receive around 6-8 hours of direct sunlight each day in
+      spring, summer, and fall. However, during the hottest part of the
+      day in summer, partial shade is preferred to protect the plant from
+      the intense heat. During the winter months, Weeping Laburnum should
+      receive some indirect sunlight as a winter or morning sun can still
+      provide the plant with an important energy boost.
+    </div>
+  </div>
+  <div class="care__pruning">
+    <i class="care__logo" data-feather="scissors"></i>
+    <div class="care__desc">
+      Weeping Laburnum (Laburnum x watereri 'Pendulum') should be pruned
+      in the late spring or early summer, after flowering but before the
+      end of July. Heavy pruning should not be done on this plant species,
+      as this will remove the flowers for the following season. Instead,
+      light pruning should be done to remove any dead, diseased or damaged
+      branches, and to trim any branches that are growing too long or
+      unsightly. If any branches are interfering with walkways or
+      buildings, those can also be pruned. This species can also be pruned
+      to keep its shape and size, or to thicken up the branches, but care
+      should be taken not to remove too many branches.
+    </div>
+  </div>
+</div> -->
+
+<!-- SECTION CTA -->
+<!-- <div class="section-cta" id="cta">
+        <div class="container">
+          <div class="cta">
+            <div class="cta-text-box">
+              <h2 class="heading-secondary">Add your plant!</h2>
+              <p class="cta-text">
+                Join our growing community of plant enthusiasts and showcase
+                your green companion. Adding your plant is easy - just fill out
+                the form below with some details about your plant, and let it
+                flourish in our digital garden!
+              </p>
+
+              <form class="cta-form" name="sign-up">
+                <div>
+                  <label for="full-name">Full Name</label>
+                  <input
+                    id="full-name"
+                    type="text"
+                    placeholder="John Smith"
+                    name="full-name"
+                    required=""
+                  />
+                </div>
+
+                <div>
+                  <label for="email">Email address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="me@example.com"
+                    name="email"
+                    required=""
+                  />
+                </div>
+
+                <div>
+                  <label for="select-where">Where did you hear from us?</label>
+                  <select id="select-where" name="select-where" required="">
+                    <option value="">Please choose one option:</option>
+                    <option value="friends">Friends and family</option>
+                    <option value="youtube">YouTube video</option>
+                    <option value="podcast">Podcast</option>
+                    <option value="ad">Facebook ad</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+                <button class="btn btn--form">Sign up now</button>
+              </form>
+            </div>
+            <div
+              class="cta-img-box"
+              role="img"
+              aria-label="Woman enjoying food"
+            ></div>
+          </div>
+        </div>
+      </div> -->
+
+<!-- FINAL -->
+<!-- <div class="section__plant container">
+  <figure class="plant__fig">
+    <img
+      src="./src/img/Young_lemon_basil_plant_(Ocimum_×_africanum).jpg"
+      alt="some plant"
+      class="plant__img"
+    />
+  </figure>
+
+  <div class="plant__details">
+    <div class="plant__details_bookmarks">
+      <button class="btn__plant btn__plant_bookmark">
+        <i data-feather="bookmark"></i>
+      </button>
+      <a href="#" class="btn__plant btn__plant_guide">
+        <i data-feather="book-open"></i>
+      </a>
+    </div>
+    <div class="plant__details_name">
+      <p class="plant__details_name_common">Weeping Labasurnum</p>
+      <p class="plant__details_name_scientific">
+        Laburnum x watereri 'Pendulum'
+      </p>
+    </div>
+    <div class="plant__details_desc">
+      Fern-leaf Yarrow (Achillea filipendulina 'Parker's Variety') is an
+      amazing, drought-tolerant deciduous perennial featuring
+      fine-textured, fern-like, bright green foliage and prominent
+      clusters of bright yellow flowers that appear all summer long. This
+      long-flowering, heat-loving plant forms an upright clump topped with
+      feathery, fragrant foliage and adds a splash of delightful color to
+      your garden or landscape. It's an easy-to-grow, low-maintenance
+      plant that requires very little care and looks great in mixed
+      borders, rock gardens, and containers. Fern-leaf Yarrow's striking
+      foliage provides an elegant backdrop for any garden area, attracts
+      beneficial insects, and provides nutritious food for wild birds.
+      It's an excellent choice for Sunset Climate Zones 1–24. Experience
+      the captivating beauty this lovely flower with its notable feathery,
+      fern leaves has to offer!
+    </div>
+    <div class="plant__details_cycle">
+      <i data-feather="refresh-cw"></i>
+      <h4>Herbaceous Perennial</h4>
+    </div>
+    <div class="plant__details_watering">
+      <i data-feather="droplet"></i>
+      <h4>Average</h4>
+    </div>
+    <div class="plant__details_sunlight">
+      <i data-feather="sun"></i>
+      <h4>Part shade/part sun</h4>
+    </div>
+  </div>
+</div>
+
+
+<div class="section__care container">
+  <div class="care__title"><p>CARE GUIDE</p></div>
+  <div class="care__watering">
+    <i class="care__logo" data-feather="droplet"></i>
+
+    <div class="care__desc">
+      Weeping Laburnum (Laburnum x watereri 'Pendulum') should be watered
+      on average once per week, but variations may be necessary depending
+      on soil conditions, the type of pot the plant is in, and ambient
+      temperature. It is best to water at the base of the plant, allowing
+      time for the water to fully saturate the root zone before the next
+      watering. During warmer months, it may require more frequent
+      waterings. During cooler months, waterings should be reduced. As a
+      general rule, it's best to water when the top inch or 2 of soil
+      feels dry.
+    </div>
+  </div>
+  <div class="care__sunlight">
+    <i class="care__logo" data-feather="sun"></i>
+
+    <div class="care__desc">
+      Weeping Laburnum (Laburnum x watereri 'Pendulum') should be planted
+      in a spot that full sunlight most of the day. Ideally, the plant
+      should receive around 6-8 hours of direct sunlight each day in
+      spring, summer, and fall. However, during the hottest part of the
+      day in summer, partial shade is preferred to protect the plant from
+      the intense heat. During the winter months, Weeping Laburnum should
+      receive some indirect sunlight as a winter or morning sun can still
+      provide the plant with an important energy boost.
+    </div>
+  </div>
+  <div class="care__pruning">
+    <i class="care__logo" data-feather="scissors"></i>
+    <div class="care__desc">
+      Weeping Laburnum (Laburnum x watereri 'Pendulum') should be pruned
+      in the late spring or early summer, after flowering but before the
+      end of July. Heavy pruning should not be done on this plant species,
+      as this will remove the flowers for the following season. Instead,
+      light pruning should be done to remove any dead, diseased or damaged
+      branches, and to trim any branches that are growing too long or
+      unsightly. If any branches are interfering with walkways or
+      buildings, those can also be pruned. This species can also be pruned
+      to keep its shape and size, or to thicken up the branches, but care
+      should be taken not to remove too many branches.
+    </div>
+  </div>
+</div>
+<div class="section__cta container">
+  <div class="cta">
+    <div class="cta__text_box">
+      <h3 class="cta__heading_secondary">Add your plant!</h3>
+      <p class="cta__text">
+        Join our growing community of plant enthusiasts and showcase your
+        green companion. Adding your plant is easy - just fill out the
+        form below with some details about your plant, and let it flourish
+        in our digital garden!
+      </p>
+
+      <form class="cta__form" name="sign-up">
+        <div class="form_name">
+          <label for="plant-name">Plant Name</label>
+          <input
+            id="plant-name"
+            type="text"
+            placeholder="Fern-leaf Yarrow"
+            name="plant-name"
+            required
+          />
+        </div>
+
+        <div class="form_scientific">
+          <label for="sci-name">Scientific Name</label>
+          <input
+            id="sci-name"
+            type="text"
+            placeholder="Achillea filipendulina"
+            name="sci-name"
+            required
+          />
+        </div>
+        <div class="form_desc">
+          <label for="desc">Description</label>
+          <textarea name="desc" id="desc" rows="3" required></textarea>
+        </div>
+        <div class="form_cycle">
+          <label for="select-where">Cycle</label>
+          <select id="select-where" name="select-where" required="">
+            <option value="">Choose one option:</option>
+            <option value="annual">Annual</option>
+            <option value="biannual">Biannual</option>
+            <option value="biennual">Biennual</option>
+            <option value="perennial">Perennial</option>
+          </select>
+        </div>
+        <div class="form_watering">
+          <label for="select-where">Watering</label>
+          <select id="select-where" name="select-where" required>
+            <option value="">Choose one option:</option>
+            <option value="none">None</option>
+            <option value="minimum">Mnimum</option>
+            <option value="average">Average</option>
+            <option value="frequent">Frequent</option>
+          </select>
+        </div>
+        <div class="form_sunlight">
+          <label for="select-where">Sunlight</label>
+          <select id="select-where" name="select-where" required>
+            <option value="">Choose one option:</option>
+            <option value="part-shade">Part shade</option>
+            <option value="full-shade">Full shade</option>
+            <option value="sun-part-shade">Sun-part shade</option>
+            <option value="full-sun">Full sun</option>
+          </select>
+        </div>
+        <div class="form_guide form_guide_water">
+          <label for="watering-guide">Watering Guide</label>
+          <textarea
+            name="watering-guide"
+            id="watering-guide"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <div class="form_guide form_guide_sun">
+          <label for="sunlight-guide">Sunlight Guide</label>
+          <textarea
+            name="sunlight-guide"
+            id="sunlight-guide"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <div class="form_guide form_guide_prune">
+          <label for="pruning-guide">Pruning Guide</label>
+          <textarea
+            name="pruning-guide"
+            id="pruning-guide"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <button class="btn btn--form form_submit">Add plant</button>
+      </form>
+    </div>
+    <div
+      class="cta__img_box"
+      role="img"
+      aria-label="Woman enjoying food"
+    ></div>
+  </div>
+</div> -->

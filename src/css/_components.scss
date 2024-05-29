@@ -1,0 +1,79 @@
+%btn {
+  background-image: $gradient;
+  border-radius: 10rem;
+  border: none;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  & > *:first-child {
+    margin-right: 1rem;
+  }
+}
+
+.feather {
+  width: 2.4rem;
+  height: 2.4rem;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.btn {
+  @extend %btn;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  &__plant {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 5.4rem;
+    height: 5.4rem;
+    border: none;
+    border-radius: 50%;
+    background-image: $gradient;
+    color: #eee;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.4s;
+    & > * {
+      width: 3.6rem;
+      height: 3.6rem;
+    }
+    &:hover {
+      transform: scale(1.05);
+    }
+    &_bookmark {
+      & > *:active {
+        fill: #eee;
+      }
+    }
+    &_guide {
+      z-index: -1;
+      position: relative;
+    }
+    &_guide::after {
+      content: "Care Guide";
+      text-align: center;
+      width: 150%;
+      position: absolute;
+      bottom: -20px;
+      font-size: 1.6rem;
+      color: darken(#758467, $amount: 10%);
+    }
+  }
+}

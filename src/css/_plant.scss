@@ -1,0 +1,101 @@
+%flex-center-col {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 5px;
+}
+.section__plant {
+  min-height: calc(100vh - 8rem);
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 1fr 2fr;
+  overflow: hidden;
+  margin-bottom: 9.6rem;
+}
+.plant {
+  &__fig {
+    // border: 1px dashed darken(#758467, $amount: 20%);
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__details {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr;
+    // grid-template-rows: 3fr 5fr 1fr;
+    grid-template-rows: 3fr 5fr 1fr;
+    grid-template-areas:
+      "pname pname pname pname pname bookmark"
+      "desc desc desc desc desc desc"
+      "cycle cycle watering watering sunlight sunlight";
+    // border: 2px solid yellow;
+    & > * {
+      border: 1px dashed darken(#758467, $amount: 20%);
+    }
+    &_bookmarks {
+      grid-area: bookmark;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      border-left: none;
+      border-right: none;
+    }
+    &_name {
+      grid-area: pname;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-left: none;
+      &_common {
+        font-size: 6.4rem;
+        color: darken(#758467, $amount: 30%);
+        letter-spacing: -0.5px;
+      }
+      &_scientific {
+        font-style: italic;
+        text-transform: lowercase;
+        font-size: 2.8rem;
+        color: lighten(#758467, $amount: 15%);
+      }
+    }
+    &_desc {
+      grid-area: desc;
+      line-height: 1.6;
+      padding: 3rem 0;
+      font-size: 1.8rem;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      color: darken(#758467, $amount: 15%);
+      text-align: justify;
+    }
+    &_cycle,
+    &_watering,
+    &_sunlight {
+      @extend %flex-center-col;
+      font-size: 1.8rem;
+      border-top: none;
+      // border: 1px dashed darken(#758467, $amount: 20%);
+      color: darken(#758467, $amount: 20%);
+    }
+    &_cycle {
+      grid-area: cycle;
+      border-left: none;
+    }
+    &_watering {
+      grid-area: watering;
+      border-left: none;
+      border-right: none;
+    }
+    &_sunlight {
+      grid-area: sunlight;
+      border-right: none;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+.section__preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  padding: 4.8rem 3.2rem;
+  justify-items: center;
+}
+.preview {
+  list-style: none;
+  text-decoration: none;
+  // border: 5px solid brown;
+  height: 35rem;
+  width: 30rem;
+  // overflow: hidden;
+  &__link {
+    display: block;
+    border: 20px solid green;
+    height: 100%;
+    width: 100%;
+    // overflow: hidden;
+
+    &:link,
+    &:visited {
+      border: 1px solid #666;
+      border-radius: 10px;
+      overflow: hidden;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // padding: 1.5rem 3.25rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &--active {
+    }
+  }
+
+  &__fig {
+    height: 60%;
+    // border: 5px solid red;
+    // position: relative;
+    // backface-visibility: hidden;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: all 0.3s;
+      // display: none;
+    }
+  }
+  &__data {
+    // display: none;
+    text-align: center;
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 40%;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    color: darken(#758467, $amount: 15%);
+    text-transform: uppercase;
+    font-weight: 600;
+
+    // This is how text is truncated!
+    // text-overflow: ellipsis;
+    // max-width: 25rem;
+    // white-space: nowrap;
+    // overflow: hidden;
+  }
+
+  &__sci {
+    font-size: 1.6rem;
+    color: lighten(#758467, $amount: 5%);
+    text-transform: lowercase;
+    font-style: italic;
+    font-weight: 500;
+  }
+}

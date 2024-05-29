@@ -1,0 +1,106 @@
+$header-font-size: 1.4rem;
+.header {
+  height: 8rem;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // border: 5px solid brown;
+  background-color: #fff;
+  position: relative;
+  &__logo {
+    height: 5rem;
+    display: block;
+  }
+  // & > * {
+  //   // border: 2px solid purple;
+  // }
+}
+.fileinput {
+  display: none;
+}
+.cam-label {
+  cursor: pointer;
+}
+.search {
+  background-color: #fff;
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  // padding-left: 3rem;
+  transition: all 0.3s;
+
+  &:focus-within {
+    transform: translateY(-2px);
+  }
+
+  &__field {
+    border: none;
+    background: none;
+    font-family: inherit;
+    color: inherit;
+    font-size: $header-font-size;
+    max-width: 30rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__btn {
+    font-weight: 500;
+    font-family: inherit;
+  }
+}
+
+.nav {
+  // border: 1px solid gold;
+  &__list {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+  }
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    // justify-content: space-between;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__btn {
+    height: 100%;
+    font-family: inherit;
+    color: inherit;
+    font-size: $header-font-size;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    cursor: pointer;
+    // padding: 0 1.5rem;
+    transition: all 0.3s;
+
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  &__mobile {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &_icon[name="x"] {
+      display: none;
+    }
+    &:hover {
+      // background-color: #444;
+    }
+  }
+}

@@ -1,0 +1,132 @@
+/* BELOW 1200px/75em (landscape tablets) */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 50%;
+  }
+  .preview {
+    list-style: none;
+    text-decoration: none;
+    // border: 5px solid brown;
+    height: 30rem;
+    width: 25rem;
+  }
+  .nav {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    transform: translateX(100%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in;
+    /* hide visually */
+    opacity: 0;
+    /*hide from mouse/keyboard  */
+    pointer-events: none;
+    /* hide from screen readers */
+    visibility: hidden;
+
+    &__list {
+      flex-direction: column;
+    }
+    &__btn {
+      font-size: 3.2rem;
+    }
+  }
+  .nav-open .nav {
+    opacity: 0.95;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0%);
+  }
+  .nav__mobile {
+    display: block;
+    position: relative;
+    z-index: 99;
+  }
+  .nav-open .nav__mobile_icon[name="menu"] {
+    display: none;
+  }
+  .nav-open .nav__mobile_icon[name="x"] {
+    display: block;
+    height: 4.8rem;
+    width: 4.8rem;
+  }
+}
+//tablet
+@media screen and (max-width: 768px) {
+  .section__preview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+//mobile L
+@media screen and (max-width: 425px) {
+  html {
+    font-size: 38%;
+  }
+  .section__preview {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 4.8rem 1rem;
+  }
+  .preview {
+    height: 35rem;
+    width: 30rem;
+  }
+  .plant__details > * {
+    border-top: none;
+    padding: 0 5px;
+  }
+  .section__plant {
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    margin-bottom: 9.6rem;
+  }
+  .section__care {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cta {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5fr;
+
+    &__img_box {
+      grid-row: 1;
+      background-size: contain;
+    }
+  }
+  .btn__plant_guide::after {
+    bottom: -15px;
+  }
+}
+//mobile M
+@media screen and (max-width: 375px) {
+  .preview {
+    height: 30rem;
+    width: 25rem;
+  }
+}
+//mobile S
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 30%;
+  }
+  .preview {
+    height: 45rem;
+    width: 40rem;
+  }
+  .section__preview {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .preview__title {
+    font-size: 2.4rem;
+  }
+  .preview__sci {
+    font-size: 2.1rem;
+  }
+  .btn__plant_guide::after {
+    bottom: -10px;
+  }
+}

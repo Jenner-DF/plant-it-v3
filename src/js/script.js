@@ -1,35 +1,63 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import {
-  API_KEY,
-  RESULTS_PER_PAGE,
-  API_URL_PLANT_LIST,
-  API_URL_PLANT_DETAILS,
-  API_URL_PLANT_CARE_GUIDE,
-} from "./config.js";
-import { getJSON, removePremiumPlants } from "./helpers.js";
 import Plant from "./plant.js";
-// const search = document.querySelector('submit');
+import { signIn, handleRedirectAuth, auth } from "./config.js";
+import { signOut } from "firebase/auth";
+
 feather.replace();
 const main = document.querySelector(".main");
 const nav_mob = document.querySelector(".nav__mobile");
 const header = document.querySelector(".header");
 const searchbar = document.querySelector(".search");
-console.log("FUCK!");
+const fileInput = document.querySelector(".fileinput");
+const bookmarks = document.querySelector(".nav__btn--bookmarks");
+const login = document.querySelector(".nav__btn--login");
+console.log(bookmarks);
+
+window.onload = async () => {
+  try {
+    await handleRedirectAuth();
+    if (auth.currentUser) {
+      login.childNodes[2].nodeValue = "Log out";
+      await addLoginListener(true);
+    } else {
+      login.childNodes[2].nodeValue = "Log in";
+      await addLoginListener(false);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+async function addLoginListener(isLog) {
+  if (isLog) {
+    login.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        location.reload();
+      } catch (e) {
+        throw e;
+      }
+    });
+  } else {
+    login.addEventListener("click", async () => {
+      try {
+        await signIn();
+      } catch (e) {
+        throw e;
+      }
+    });
+  }
+}
 function scrollToTop() {
   // Use window.scrollTo to set the scroll position to the top
   document.documentElement.scrollTop = 0;
 }
 
 // "start": "parcel --no-cache index.html ",
-document.addEventListener("DOMContentLoaded", function () {
-  const fileInput = document.querySelector(".fileinput");
-
-  fileInput.addEventListener("change", async (e) => {
-    const markup = await Plant.getCameraQuery(e.target.files[0]);
-    main.innerHTML = "";
-    main.insertAdjacentHTML("afterbegin", markup);
-  });
+fileInput.addEventListener("change", async (e) => {
+  const markup = await Plant.getCameraQuery(e.target.files[0]);
+  main.innerHTML = "";
+  main.insertAdjacentHTML("afterbegin", markup);
 });
 // function encodeImageFileAsURL(element) {
 //   const file = element.files[0];
@@ -138,7 +166,6 @@ nav_mob.addEventListener("click", (e) => {
   header.classList.toggle("nav-open");
 });
 //preview
-
 searchbar.addEventListener("submit", async (e) => {
   e.preventDefault();
   const query = document.querySelector(".search__field").value;

@@ -11,12 +11,14 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.11.0",
-    "parcel": "^2.11.0"
+    "buffer": "^6.0.3",
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "core-js": "^3.35.0",
     "feather-icons": "^4.29.1",
-    "firebase": "^10.7.1",
+    "firebase": "^10.12.2",
     "regenerator-runtime": "^0.14.1"
   }
 }

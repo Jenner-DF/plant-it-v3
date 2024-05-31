@@ -104,21 +104,21 @@ export default class Plant {
     <i class="care__logo" data-feather="droplet"></i>
 
     <div class="care__desc">
-     ${careGuide.watering}
+     ${this.careGuide.watering}
     </div>
   </div>
   <div class="care__sunlight">
     <i class="care__logo" data-feather="sun"></i>
 
     <div class="care__desc">
-    ${careGuide.sunlight}
+    ${this.careGuide.sunlight}
 
     </div>
   </div>
   <div class="care__pruning">
     <i class="care__logo" data-feather="scissors"></i>
     <div class="care__desc">
-    ${careGuide.pruning}
+    ${this.careGuide.pruning}
 
     </div>
   </div>

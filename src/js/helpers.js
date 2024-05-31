@@ -66,12 +66,13 @@ export async function getSearchResults(query) {
 export async function getMyPlant(id) {
   try {
     const data = await getJSON(`${API_URL_PLANT_DETAILS}/${id}?key=${API_KEY}`);
-
-    const [data_careGuide] = await getJSON(
+    console.log(data);
+    const data_careGuide = await getJSON(
       `${API_URL_PLANT_CARE_GUIDE}?species_id=${id}&key=${API_KEY}`
     );
-
-    return [data, data_careGuide];
+    const [careGuide] = data_careGuide.data;
+    console.log(data_careGuide);
+    return [data, careGuide];
   } catch (e) {
     throw new Error(e, "Please try again later.");
   }

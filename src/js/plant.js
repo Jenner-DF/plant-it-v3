@@ -3,7 +3,6 @@ import { getSearchResults, getMyPlant, getUploadedImgPlant } from "./helpers";
 //import
 export default class Plant {
   constructor(id) {
-    this.query = query;
     this.plantID = id;
     this.plant = {};
     this.careGuide = {};
@@ -33,6 +32,7 @@ export default class Plant {
     return `<ul class="section__preview">${markup}</ul>`;
   }
   async generateMarkupPlant() {
+    console.log(this.plantID);
     const [plant, careGuide] = await getMyPlant(this.plantID);
     this.plant = {
       id: plant.id,
@@ -58,8 +58,8 @@ export default class Plant {
     <div class="section__plant container">
   <figure class="plant__fig">
     <img
-      src="${plant.image}"
-      alt="${plant.commonName}"
+      src="${this.plant.image}"
+      alt="${this.plant.commonName}"
       class="plant__img"
     />
   </figure>
@@ -74,25 +74,25 @@ export default class Plant {
       </a>
     </div>
     <div class="plant__details_name">
-      <p class="plant__details_name_common">${plant.commonName}</p>
+      <p class="plant__details_name_common">${this.plant.commonName}</p>
       <p class="plant__details_name_scientific">
-        ${plant.scientificName}
+        ${this.plant.scientificName}
       </p>
     </div>
     <div class="plant__details_desc">
-     ${plant.description}
+     ${this.plant.description}
     </div>
     <div class="plant__details_cycle">
       <i data-feather="refresh-cw"></i>
-      <h4>${plant.cycle}</h4>
+      <h4>${this.plant.cycle}</h4>
     </div>
     <div class="plant__details_watering">
       <i data-feather="droplet"></i>
-      <h4>${plant.watering}</h4>
+      <h4>${this.plant.watering}</h4>
     </div>
     <div class="plant__details_sunlight">
       <i data-feather="sun"></i>
-      <h4>${plant.sunlight}</h4>
+      <h4>${this.plant.sunlight}</h4>
     </div>
   </div>
 </div>

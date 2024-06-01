@@ -13,6 +13,9 @@ const searchbar = document.querySelector(".search");
 const fileInput = document.querySelector(".fileinput");
 const bookmarks = document.querySelector(".nav__btn--bookmarks");
 const login = document.querySelector(".nav__btn--login");
+document.querySelector(".header__logo").addEventListener("click", () => {
+  location.reload();
+});
 let myplant;
 bookmarks.addEventListener("click", async () => {
   try {
@@ -24,7 +27,9 @@ bookmarks.addEventListener("click", async () => {
       }
     } else {
       renderSpinner();
-      const markup = await Plant.getBookmarks();
+      const markup = await Plant.generateMarkupBookmark();
+      console.log("MARKUP KO KINGINA MO");
+      console.log(markup);
       main.innerHTML = "";
       main.insertAdjacentHTML("afterbegin", markup);
     }

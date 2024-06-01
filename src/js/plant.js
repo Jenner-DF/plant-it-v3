@@ -1,5 +1,10 @@
 import { mark } from "regenerator-runtime";
-import { getSearchResults, getMyPlant, getUploadedImgPlant } from "./helpers";
+import {
+  getSearchResults,
+  getMyPlant,
+  getUploadedImgPlant,
+  getBookmarkResults,
+} from "./helpers";
 import { auth, getUserProfile, updateUserPlantDatabase } from "./config";
 //import
 export default class Plant {
@@ -9,6 +14,20 @@ export default class Plant {
     this.careGuide = {};
     this.bookmarked = false;
     this.camsearch = false;
+  }
+  static async generateMarkupBookmark() {
+    try {
+      const data = await getUserProfile(auth.currentUser.email);
+      this.bookmarkedPlants = data.bookmarkplants;
+      let markup = "";
+      for (const id of this.bookmarkedPlants) {
+        const result = await getBookmarkResults(Number(id));
+        markup += result;
+      }
+      return `<ul class="section__preview">${markup}</ul>`;
+    } catch (e) {
+      throw e;
+    }
   }
   async removePlantFromDB(id) {
     const index = this.bookmarkedPlants.indexOf(id);
@@ -165,110 +184,6 @@ export default class Plant {
       ${this.careGuide.pruning}
   
       </div>
-    </div>
-  </div>
-  <div class="section__cta container">
-    <div class="cta">
-      <div class="cta__text_box">
-        <h3 class="cta__heading_secondary">Add your plant!</h3>
-        <p class="cta__text">
-          Join our growing community of plant enthusiasts and showcase your
-          green companion. Adding your plant is easy - just fill out the
-          form below with some details about your plant, and let it flourish
-          in our digital garden!
-        </p>
-  
-        <form class="cta__form" name="sign-up">
-          <div class="form_name">
-            <label for="plant-name">Plant Name</label>
-            <input
-              id="plant-name"
-              type="text"
-              placeholder="Fern-leaf Yarrow"
-              name="plant-name"
-              required
-            />
-          </div>
-  
-          <div class="form_scientific">
-            <label for="sci-name">Scientific Name</label>
-            <input
-              id="sci-name"
-              type="text"
-              placeholder="Achillea filipendulina"
-              name="sci-name"
-              required
-            />
-          </div>
-          <div class="form_desc">
-            <label for="desc">Description</label>
-            <textarea name="desc" id="desc" rows="3" required></textarea>
-          </div>
-          <div class="form_cycle">
-            <label for="select-where">Cycle</label>
-            <select id="select-where" name="select-where" required="">
-              <option value="">Choose one option:</option>
-              <option value="annual">Annual</option>
-              <option value="biannual">Biannual</option>
-              <option value="biennual">Biennual</option>
-              <option value="perennial">Perennial</option>
-            </select>
-          </div>
-          <div class="form_watering">
-            <label for="select-where">Watering</label>
-            <select id="select-where" name="select-where" required>
-              <option value="">Choose one option:</option>
-              <option value="none">None</option>
-              <option value="minimum">Mnimum</option>
-              <option value="average">Average</option>
-              <option value="frequent">Frequent</option>
-            </select>
-          </div>
-          <div class="form_sunlight">
-            <label for="select-where">Sunlight</label>
-            <select id="select-where" name="select-where" required>
-              <option value="">Choose one option:</option>
-              <option value="part-shade">Part shade</option>
-              <option value="full-shade">Full shade</option>
-              <option value="sun-part-shade">Sun-part shade</option>
-              <option value="full-sun">Full sun</option>
-            </select>
-          </div>
-          <div class="form_guide form_guide_water">
-            <label for="watering-guide">Watering Guide</label>
-            <textarea
-              name="watering-guide"
-              id="watering-guide"
-              rows="3"
-              required
-            ></textarea>
-          </div>
-          <div class="form_guide form_guide_sun">
-            <label for="sunlight-guide">Sunlight Guide</label>
-            <textarea
-              name="sunlight-guide"
-              id="sunlight-guide"
-              rows="3"
-              required
-            ></textarea>
-          </div>
-          <div class="form_guide form_guide_prune">
-            <label for="pruning-guide">Pruning Guide</label>
-            <textarea
-              name="pruning-guide"
-              id="pruning-guide"
-              rows="3"
-              required
-            ></textarea>
-          </div>
-          <button class="btn btn--form form_submit">Add plant</button>
-        </form>
-      </div>
-      <div
-        class="cta__img_box"
-        role="img"
-        aria-label="Woman enjoying food"
-      ></div>
     </div>
   </div>
       `;

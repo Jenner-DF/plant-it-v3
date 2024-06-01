@@ -38,6 +38,21 @@ export const removePremiumPlants = function (data) {
 };
 
 // PLANT
+export async function getBookmarkResults(id) {
+  try {
+    console.log(id);
+    const data = await getJSON(`${API_URL_PLANT_DETAILS}/${id}?key=${API_KEY}`);
+    console.log("MY DATA!!!!!");
+    console.log(data);
+    const result = data;
+    return `<li class="preview"><a class="preview__link" href="#${id}"> <figure class="preview__fig"> <img src="${result.default_image.original_url}" alt="${result.common_name}" /> </figure> <div class="preview__data"><h4 class="preview__title">${result.common_name}</h4><p class="preview__sci">${result.scientific_name[0]}</p>
+      </div>
+    </a>
+  </li>`;
+  } catch (e) {
+    throw e;
+  }
+}
 export async function getSearchResults(query) {
   console.log(`ako ay nasa results`);
   console.log(query);

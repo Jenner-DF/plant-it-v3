@@ -3,10 +3,10 @@ export const API_URL_PLANT_DETAILS = "https://perenual.com/api/species/details";
 export const API_URL_PLANT_CARE_GUIDE =
   "https://perenual.com/api/species-care-guide-list";
 export const TIMEOUT_SEC = 7;
-export const API_KEY = "sk-8vDE665a6b890cfa45746";
+export const API_KEY = "sk-cNJ3665a979de83282125";
 export const RESULTS_PER_PAGE = 10;
 export const API_KEY_CAMERA =
-  "I4T6KcDmEgF4XLcSG49APFXIdI1LoUKl7zylPEp0h51c846l4I";
+  "qMVODKHS6GGURq4ukad6SukwYZ42PcEcoWDSgjPuez2kMtnDU9";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

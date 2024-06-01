@@ -3,6 +3,7 @@ import "regenerator-runtime/runtime";
 import Plant from "./plant.js";
 import { signIn, handleRedirectAuth, auth } from "./config.js";
 import { signOut } from "firebase/auth";
+import icons from "../img/icons.svg";
 
 feather.replace();
 const main = document.querySelector(".main");
@@ -12,12 +13,92 @@ const searchbar = document.querySelector(".search");
 const fileInput = document.querySelector(".fileinput");
 const bookmarks = document.querySelector(".nav__btn--bookmarks");
 const login = document.querySelector(".nav__btn--login");
-console.log(bookmarks);
+let myplant;
+bookmarks.addEventListener("click", async () => {
+  try {
+    if (!auth.currentUser) {
+      try {
+        await signIn();
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      renderSpinner();
+      const markup = await Plant.getBookmarks();
+      main.innerHTML = "";
+      main.insertAdjacentHTML("afterbegin", markup);
+    }
+  } catch (e) {
+    displayError(e);
+  }
+});
+// main plant
+const plantClick = async () => {
+  try {
+    const id = window.location.hash.slice(1);
+    console.log(id);
+    if (!id) return;
+    main.innerHTML = "";
+    myplant = new Plant(id);
+    renderSpinner();
+    const markup = await myplant.generateMarkupPlant();
+    main.innerHTML = "";
+    main.insertAdjacentHTML("afterbegin", markup);
+    feather.replace();
+    //add bookmark button
+    await toggleBookmark(id);
+  } catch (e) {
+    displayError(e);
+  }
+};
+["hashchange"].forEach((ev) => window.addEventListener(ev, plantClick));
 
+async function toggleBookmark(id) {
+  // await myplant.checkDatabaseBookmark();
+  const bookmark = document.querySelector(".btn__plant_bookmark");
+  bookmark.addEventListener("click", async () => {
+    if (myplant.bookmarked) {
+      bookmark.innerHTML = `<i data-feather="bookmark"></i>`;
+      myplant.bookmarked = false;
+      console.log(bookmark);
+      feather.replace();
+      await myplant.removePlantFromDB(id);
+    } else {
+      bookmark.innerHTML = `<i data-feather="check-square"></i>`;
+      myplant.bookmarked = true;
+      console.log(bookmark);
+      feather.replace();
+      await myplant.addPlantToDB(id);
+    }
+  });
+
+  // bookmark.addEventListener("click", async () => {
+  //   if ((myplant.bookmarked = true)) myplant.removePlantDB();
+  //   else {
+  //     myplant.addPlantDB();
+  //   }
+  // });
+}
+function displayError(error) {
+  main.innerHTML = "";
+  main.insertAdjacentHTML = `<h1 class='center-text'>${error}</h1>`;
+}
+function renderSpinner() {
+  const spinnerMarkup = `
+  <div class="spinner">
+          <svg>
+            <use href="${icons}#icon-loader"></use>
+          </svg>
+        </div>
+  `;
+  main.innerHTML = "";
+  main.insertAdjacentHTML("afterbegin", spinnerMarkup);
+}
 window.onload = async () => {
   try {
     await handleRedirectAuth();
     if (auth.currentUser) {
+      console.log(auth.currentUser);
       login.childNodes[2].nodeValue = "Log out";
       await addLoginListener(true);
     } else {
@@ -25,7 +106,7 @@ window.onload = async () => {
       await addLoginListener(false);
     }
   } catch (e) {
-    console.log(e);
+    displayError(e);
   }
 };
 async function addLoginListener(isLog) {
@@ -167,236 +248,15 @@ nav_mob.addEventListener("click", (e) => {
 });
 //preview
 searchbar.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const query = document.querySelector(".search__field").value;
-  console.log(query);
-  const markup = await Plant.generateMarkupSearch(query);
-  main.innerHTML = "";
-  main.insertAdjacentHTML("afterbegin", markup);
+  try {
+    e.preventDefault();
+    const query = document.querySelector(".search__field").value;
+    console.log(query);
+    renderSpinner();
+    const markup = await Plant.generateMarkupSearch(query);
+    main.innerHTML = "";
+    main.insertAdjacentHTML("afterbegin", markup);
+  } catch (e) {
+    displayError(e);
+  }
 });
-
-// main plant
-
-// const reqPlant = async function (id) {
-//   try {
-//     const data = await getJSON(`${API_URL_PLANT_DETAILS}/${id}?key=${API_KEY}`);
-//     const data_careGuide = await getJSON(
-//       `${API_URL_PLANT_CARE_GUIDE}?species_id=${id}&key=${API_KEY}`
-//     );
-//     const plant = data;
-//     const [careGuide] = data_careGuide.data;
-//     console.log("😂😂😂😂😂asd😂", plant);
-//     state.plant = {
-//       id: plant.id,
-//       commonName: plant.common_name,
-//       scientificName: plant.scientific_name[0],
-//       image: plant.default_image.original_url,
-//       cycle: plant.cycle,
-//       watering: plant.watering,
-//       sunlight: plant.sunlight,
-//       description: plant.description ? plant.description : "No Data Available.",
-//     };
-//     state.plant.careGuide = {
-//       watering: careGuide.section[0].description,
-//       sunlight: careGuide.section[1].description,
-//       pruning: careGuide.section[2].description,
-//     };
-//     console.log("😁😁😁😁😁", state.plant);
-//     if (state.bookmarks.some((bmarked) => bmarked.id === +id))
-//       state.plant.bookmarked = true;
-//     else state.plant.bookmarked = false;
-//     console.log(state.bookmarks);
-
-//     const markupPlant = genMarkupPlant(state.plant);
-//     main.insertAdjacentHTML("afterbegin", markupPlant);
-//     feather.replace();
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-// const genMarkupPlant = function (plant) {
-//   return `      <div class="section__plant container">
-//   <figure class="plant__fig">
-//     <img
-//       src="${plant.image}"
-//       alt="${plant.commonName}"
-//       class="plant__img"
-//     />
-//   </figure>
-
-//   <div class="plant__details">
-//     <div class="plant__details_bookmarks">
-//       <button class="btn__plant btn__plant_bookmark">
-//         <i data-feather="bookmark"></i>
-//       </button>
-//       <a href="#" class="btn__plant btn__plant_guide">
-//         <i data-feather="book-open"></i>
-//       </a>
-//     </div>
-//     <div class="plant__details_name">
-//       <p class="plant__details_name_common">${plant.commonName}</p>
-//       <p class="plant__details_name_scientific">
-//         ${plant.scientificName}
-//       </p>
-//     </div>
-//     <div class="plant__details_desc">
-//      ${plant.description}
-//     </div>
-//     <div class="plant__details_cycle">
-//       <i data-feather="refresh-cw"></i>
-//       <h4>${plant.cycle}</h4>
-//     </div>
-//     <div class="plant__details_watering">
-//       <i data-feather="droplet"></i>
-//       <h4>${plant.watering}</h4>
-//     </div>
-//     <div class="plant__details_sunlight">
-//       <i data-feather="sun"></i>
-//       <h4>${plant.sunlight}</h4>
-//     </div>
-//   </div>
-// </div>
-
-// <div class="section__care container">
-//   <div class="care__title"><p>CARE GUIDE</p></div>
-//   <div class="care__watering">
-//     <i class="care__logo" data-feather="droplet"></i>
-
-//     <div class="care__desc">
-//      ${plant.careGuide.watering}
-//     </div>
-//   </div>
-//   <div class="care__sunlight">
-//     <i class="care__logo" data-feather="sun"></i>
-
-//     <div class="care__desc">
-//     ${plant.careGuide.sunlight}
-
-//     </div>
-//   </div>
-//   <div class="care__pruning">
-//     <i class="care__logo" data-feather="scissors"></i>
-//     <div class="care__desc">
-//     ${plant.careGuide.pruning}
-
-//     </div>
-//   </div>
-// </div>
-// <div class="section__cta container">
-//   <div class="cta">
-//     <div class="cta__text_box">
-//       <h3 class="cta__heading_secondary">Add your plant!</h3>
-//       <p class="cta__text">
-//         Join our growing community of plant enthusiasts and showcase your
-//         green companion. Adding your plant is easy - just fill out the
-//         form below with some details about your plant, and let it flourish
-//         in our digital garden!
-//       </p>
-
-//       <form class="cta__form" name="sign-up">
-//         <div class="form_name">
-//           <label for="plant-name">Plant Name</label>
-//           <input
-//             id="plant-name"
-//             type="text"
-//             placeholder="Fern-leaf Yarrow"
-//             name="plant-name"
-//             required
-//           />
-//         </div>
-
-//         <div class="form_scientific">
-//           <label for="sci-name">Scientific Name</label>
-//           <input
-//             id="sci-name"
-//             type="text"
-//             placeholder="Achillea filipendulina"
-//             name="sci-name"
-//             required
-//           />
-//         </div>
-//         <div class="form_desc">
-//           <label for="desc">Description</label>
-//           <textarea name="desc" id="desc" rows="3" required></textarea>
-//         </div>
-//         <div class="form_cycle">
-//           <label for="select-where">Cycle</label>
-//           <select id="select-where" name="select-where" required="">
-//             <option value="">Choose one option:</option>
-//             <option value="annual">Annual</option>
-//             <option value="biannual">Biannual</option>
-//             <option value="biennual">Biennual</option>
-//             <option value="perennial">Perennial</option>
-//           </select>
-//         </div>
-//         <div class="form_watering">
-//           <label for="select-where">Watering</label>
-//           <select id="select-where" name="select-where" required>
-//             <option value="">Choose one option:</option>
-//             <option value="none">None</option>
-//             <option value="minimum">Mnimum</option>
-//             <option value="average">Average</option>
-//             <option value="frequent">Frequent</option>
-//           </select>
-//         </div>
-//         <div class="form_sunlight">
-//           <label for="select-where">Sunlight</label>
-//           <select id="select-where" name="select-where" required>
-//             <option value="">Choose one option:</option>
-//             <option value="part-shade">Part shade</option>
-//             <option value="full-shade">Full shade</option>
-//             <option value="sun-part-shade">Sun-part shade</option>
-//             <option value="full-sun">Full sun</option>
-//           </select>
-//         </div>
-//         <div class="form_guide form_guide_water">
-//           <label for="watering-guide">Watering Guide</label>
-//           <textarea
-//             name="watering-guide"
-//             id="watering-guide"
-//             rows="3"
-//             required
-//           ></textarea>
-//         </div>
-//         <div class="form_guide form_guide_sun">
-//           <label for="sunlight-guide">Sunlight Guide</label>
-//           <textarea
-//             name="sunlight-guide"
-//             id="sunlight-guide"
-//             rows="3"
-//             required
-//           ></textarea>
-//         </div>
-//         <div class="form_guide form_guide_prune">
-//           <label for="pruning-guide">Pruning Guide</label>
-//           <textarea
-//             name="pruning-guide"
-//             id="pruning-guide"
-//             rows="3"
-//             required
-//           ></textarea>
-//         </div>
-//         <button class="btn btn--form form_submit">Add plant</button>
-//       </form>
-//     </div>
-//     <div
-//       class="cta__img_box"
-//       role="img"
-//       aria-label="Woman enjoying food"
-//     ></div>
-//   </div>
-// </div>`;
-// };
-
-const plantClick = async () => {
-  const id = window.location.hash.slice(1);
-  console.log(id);
-  if (!id) return;
-  main.innerHTML = "";
-  const myplant = new Plant(id);
-  const markup = await myplant.generateMarkupPlant();
-  main.innerHTML = "";
-  main.insertAdjacentHTML("afterbegin", markup);
-  feather.replace();
-};
-["hashchange"].forEach((ev) => window.addEventListener(ev, plantClick));

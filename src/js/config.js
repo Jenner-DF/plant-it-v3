@@ -3,7 +3,7 @@ export const API_URL_PLANT_DETAILS = "https://perenual.com/api/species/details";
 export const API_URL_PLANT_CARE_GUIDE =
   "https://perenual.com/api/species-care-guide-list";
 export const TIMEOUT_SEC = 7;
-export const API_KEY = "sk-XZXO65a5abb0087263793";
+export const API_KEY = "sk-8vDE665a6b890cfa45746";
 export const RESULTS_PER_PAGE = 10;
 export const API_KEY_CAMERA =
   "I4T6KcDmEgF4XLcSG49APFXIdI1LoUKl7zylPEp0h51c846l4I";
@@ -66,14 +66,13 @@ async function newUserDB(user) {
   try {
     console.log(user);
     await setDoc(
-      doc(db, "userPlants", user.uid),
+      doc(db, "userPlants", user.email),
       {
         uid: user.uid,
         email: user.email,
         displayName: user.displayName,
-        isAdmin: false,
-        wallet: 0,
-        history: "[]",
+        bookmarkplants: [],
+        createdplants: [],
         AccountCreationDate: serverTimestamp(),
       },
       { merge: true }
@@ -82,4 +81,24 @@ async function newUserDB(user) {
     throw e;
   }
 }
-export { signIn, handleRedirectAuth, auth };
+async function getUserProfile(email) {
+  try {
+    if (!email) return null;
+    const docRef = doc(db, "userPlants", email);
+    const getdoc = await getDoc(docRef);
+    return getdoc.data();
+  } catch (e) {
+    throw e;
+  }
+}
+async function updateUserPlantDatabase(newBookmarkPlants) {
+  const docRef = doc(db, "userPlants", auth.currentUser.email);
+  await updateDoc(docRef, { bookmarkplants: newBookmarkPlants });
+}
+export {
+  signIn,
+  handleRedirectAuth,
+  auth,
+  getUserProfile,
+  updateUserPlantDatabase,
+};

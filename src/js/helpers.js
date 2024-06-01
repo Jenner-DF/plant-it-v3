@@ -110,14 +110,18 @@ export async function getUploadedImgPlant(imageBase64) {
     }
     // Parse the response JSON
     const result = await response.json();
+    console.log(result.result);
+    if (!result.result.is_plant.binary)
+      throw new Error("Image is highly likely not a plant.");
     //returns only the first word
-    const searchedName =
-      result?.result?.classification?.suggestions?.[0]?.name?.split(" ")[0];
+    const searchedName = result?.result?.classification?.suggestions?.[0]?.name;
+    const probability =
+      result?.result?.classification?.suggestions?.[0]?.probability;
     document.querySelector(".search__field").value = searchedName;
-    return searchedName;
+    return [searchedName, probability];
     // Process the result as needed
     // console.log(result);
   } catch (error) {
-    throw new Error("Error uploading your image, please try again.");
+    throw error;
   }
 }
